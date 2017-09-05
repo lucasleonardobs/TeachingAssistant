@@ -12,25 +12,25 @@ import { AlunoService } from './aluno.service';
 export class AppComponent {
   constructor(private alunoService: AlunoService) { }
 
-  aluno: Aluno = new Aluno();
-  alunos: Aluno[] = [];
-  cpfduplicado: boolean = false;
+   aluno: Aluno = new Aluno();
+   alunos: Aluno[] = [];
+   cpfduplicado: boolean = false;
 
-  criarAluno(a: Aluno): void {
-    if (this.alunoService.criar(a)) {
-      this.alunos.push(a);
-      this.aluno = new Aluno();
-    } else {
-      this.cpfduplicado = true;
-    }
-  }
+   criarAluno(a: Aluno): void {
+     if (this.alunoService.criar(a)) {
+       this.alunos.push(a);
+       this.aluno = new Aluno();
+     } else {
+       this.cpfduplicado = true;
+     }
+   }
 
-  onMove(): void {
-    this.cpfduplicado = false;
-  }
+   onMove(): void {
+      this.cpfduplicado = false;
+   }
 
-  atualizarAluno(aluno: Aluno): void {
-    this.alunoService.atualizar(aluno);
-  }
+   atualizarAluno(aluno: Aluno): void {
+      this.alunoService.atualizar(aluno);
+   }
 
 }
