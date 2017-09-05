@@ -8,6 +8,7 @@ export class AlunoService {
 
   criar(aluno: Aluno): boolean {
     aluno = aluno.clone();
+    var result = null;
     if (this.cpfNaoCadastrado(aluno.cpf)) {
       this.alunos.push(aluno);
       return true
