@@ -12,6 +12,7 @@ export class AlunosComponent implements OnInit {
   aluno: Aluno = new Aluno();
   alunos: Aluno[] = [];
   cpfduplicado: boolean = false;
+  deletado: boolean = false;
 
   constructor(private alunoService: AlunoService) { }
 
@@ -28,6 +29,24 @@ export class AlunosComponent implements OnInit {
         },
         msg => { alert(msg.message); }
       );
+  }
+
+  deletarLocal(cpf: string): void {
+    this.alunos = this.alunos.filter(aluno => aluno.cpf !== cpf)
+  }
+
+  deletarAluno(cpf: string): void {
+    this.alunoService.deletar(cpf)
+      .subscribe(
+        _ => {
+          this.alunoService.getAlunos()
+            .subscribe(
+              as => { this.alunos = as; },
+              msg => { alert(msg.message); }
+            );
+        },
+        msg => { alert(msg.message); }
+      )
   }
 
   onMove(): void {

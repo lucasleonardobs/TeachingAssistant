@@ -28,6 +28,13 @@ export class AlunoService {
     );
   }
 
+  deletar(cpf: string): Observable<any> {
+    return this.http.delete<any>(this.taURL + "/aluno/" + cpf, { headers: this.headers }).pipe(
+      retry(2),
+      map(res => { if (res.success) { return true; } else { return false; } })
+    );
+  }
+
   getAlunos(): Observable<Aluno[]> {
     return this.http.get<Aluno[]>(this.taURL + "/alunos")
       .pipe(
