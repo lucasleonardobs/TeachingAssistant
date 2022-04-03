@@ -2,13 +2,12 @@ import { Aluno } from './aluno';
 
 export class AlunoService {
   alunos: Aluno[] = [];
-  
-  gravar(aluno: Aluno): Aluno {
-    var result = null;
+
+  gravar(aluno: Aluno): boolean {
     if (!this.alunos.find(a => a.cpf == aluno.cpf)) {
       this.alunos.push(aluno);
-      result = aluno;
+      return true
     }
-    return result;
+    return false
   }
 }
